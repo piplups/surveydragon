@@ -1,0 +1,6 @@
+framework module Pods_SurveyDragonUITests {
+  umbrella header "Pods-SurveyDragonUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}
