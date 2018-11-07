@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		02B055AEF9AEF27C3E06A9C9 /* Pods_SurveyDragonUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2BDB44CF0E949309B9A8080 /* Pods_SurveyDragonUITests.framework */; };
+		264F9732219173F6002B6E80 /* ComposeSurveyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264F9731219173F6002B6E80 /* ComposeSurveyViewController.swift */; };
 		26850134217D575F00708E4B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26850133217D575F00708E4B /* AppDelegate.swift */; };
 		26850136217D575F00708E4B /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26850135217D575F00708E4B /* FirstViewController.swift */; };
 		26850138217D575F00708E4B /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26850137217D575F00708E4B /* ProfileViewController.swift */; };
@@ -44,6 +45,7 @@
 		06FEC95E39162296C9896CE5 /* Pods-SurveyDragon.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SurveyDragon.release.xcconfig"; path = "Pods/Target Support Files/Pods-SurveyDragon/Pods-SurveyDragon.release.xcconfig"; sourceTree = "<group>"; };
 		0B1FEF6A9F5AE90A166039DC /* Pods_SurveyDragon.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SurveyDragon.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		149AC94F9B52CE13AAC810F3 /* Pods-SurveyDragonTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SurveyDragonTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SurveyDragonTests/Pods-SurveyDragonTests.release.xcconfig"; sourceTree = "<group>"; };
+		264F9731219173F6002B6E80 /* ComposeSurveyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeSurveyViewController.swift; sourceTree = "<group>"; };
 		26850130217D575F00708E4B /* SurveyDragon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SurveyDragon.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		26850133217D575F00708E4B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		26850135217D575F00708E4B /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
@@ -127,6 +129,7 @@
 				26850137217D575F00708E4B /* ProfileViewController.swift */,
 				2685FB4C217FB57B003E2426 /* AuthenticationViewController.swift */,
 				2685FB48217E5B3F003E2426 /* ComposeViewController.swift */,
+				264F9731219173F6002B6E80 /* ComposeSurveyViewController.swift */,
 				26850139217D575F00708E4B /* Main.storyboard */,
 				2685013C217D576200708E4B /* Assets.xcassets */,
 				2685013E217D576200708E4B /* LaunchScreen.storyboard */,
@@ -415,6 +418,7 @@
 				2685FB4D217FB57B003E2426 /* AuthenticationViewController.swift in Sources */,
 				26850136217D575F00708E4B /* FirstViewController.swift in Sources */,
 				2685FB49217E5B3F003E2426 /* ComposeViewController.swift in Sources */,
+				264F9732219173F6002B6E80 /* ComposeSurveyViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
