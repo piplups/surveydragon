@@ -18,9 +18,8 @@ class ComposeSurveyViewController: UIViewController {
     
     var ref: DatabaseReference?
     
-    @IBOutlet weak var surveyNameView: UITextView! {
-    
-    }
+    @IBOutlet weak var surveyNameView: UITextView!
+    // should detect changes from this UITextView
     
     
     override func viewDidLoad() {
