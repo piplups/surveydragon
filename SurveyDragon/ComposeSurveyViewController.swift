@@ -18,9 +18,8 @@ class ComposeSurveyViewController: UIViewController {
     
     var ref: DatabaseReference?
     
-    @IBOutlet weak var surveyNameView: UITextView!
-    // should detect changes from this UITextView
     
+    @IBOutlet weak var surveyName: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,8 +29,12 @@ class ComposeSurveyViewController: UIViewController {
     }
     
     @IBAction func createSurvey(_sender: Any) {
-        ref?.child("surveys").childByAutoId().setValue(["title": surveyNameView,
-                                                        "author": userID!])
+        let authorRef = self.ref!.child(userID!);
+
+        //ref?.child("surveys").childByAutoId().setValue(["title": "surveyNameView",
+                                                        //"author": userID!])
+        authorRef.setValue(["title": surveyName.text!])
+
         presentingViewController?.dismiss(animated: true, completion: nil)
     }
     
