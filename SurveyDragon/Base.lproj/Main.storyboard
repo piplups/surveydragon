@@ -149,7 +149,7 @@
         <!--Create Survey-->
         <scene sceneID="PNN-Mv-v4h">
             <objects>
-                <viewController id="POg-vR-Lkl" customClass="SurveyCreationViewController" sceneMemberID="viewController">
+                <viewController id="POg-vR-Lkl" customClass="CreateSurveyViewController" customModule="SurveyDragon" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="zKk-xR-mkB">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -183,15 +183,18 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Create Survey" id="kGp-ss-Rbz"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="createSurveyButton" destination="qP8-61-NIO" id="lIY-Ar-HRY"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KUT-Jo-IaT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="747.82608695652175" y="1068.75"/>
         </scene>
-        <!--View Controller-->
+        <!--Compose Survey Name View Controller-->
         <scene sceneID="thh-bn-Ars">
             <objects>
-                <viewController id="tvc-s1-ZOG" sceneMemberID="viewController">
+                <viewController id="tvc-s1-ZOG" customClass="ComposeSurveyNameViewController" customModule="SurveyDragon" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="lsU-M3-68P">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -208,7 +211,8 @@
                                         </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" title="Continue" id="HvC-Pl-Zqc">
                                             <connections>
-                                                <segue destination="VMl-qm-FZd" kind="show" id="ffC-81-6db"/>
+                                                <action selector="addSurvey:" destination="tvc-s1-ZOG" id="Ge1-N7-0qv"/>
+                                                <segue destination="VMl-qm-FZd" kind="show" identifier="goToSurveyQuestionCreation" id="5Vp-Q2-JTV"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>
@@ -232,6 +236,9 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="bbO-r0-gzd"/>
                     </view>
+                    <connections>
+                        <outlet property="surveyNameTextView" destination="YvF-iN-8Bc" id="hJj-Um-dMp"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PsW-9l-pKe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -261,7 +268,7 @@
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
-                                    <segue destination="7cF-Po-0u9" kind="show" id="HzE-H3-6l3"/>
+                                    <segue destination="7cF-Po-0u9" kind="show" id="c5M-hx-sc9"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rg7-XW-oIR">
@@ -329,7 +336,7 @@
         <!--Long Answer Controller-->
         <scene sceneID="igt-nb-hcx">
             <objects>
-                <viewController title="Long Answer Controller" id="7cF-Po-0u9" sceneMemberID="viewController">
+                <viewController title="Long Answer Controller" id="7cF-Po-0u9" customClass="ComposeLongAnswerViewController" customModule="SurveyDragon" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="3ka-YN-icO">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -339,12 +346,12 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <items>
                                     <navigationItem title="New Long Answer Question" id="XOt-gf-Ff4">
-                                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="6kV-gX-7sr">
+                                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="6kV-gX-7sr"/>
+                                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="b9X-Qa-JzJ">
                                             <connections>
-                                                <segue destination="VMl-qm-FZd" kind="show" id="rX2-Ey-bOk"/>
+                                                <action selector="addLongQuestion:" destination="7cF-Po-0u9" id="LGv-N7-Jh1"/>
                                             </connections>
                                         </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="b9X-Qa-JzJ"/>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
@@ -366,6 +373,9 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="YPJ-op-sVk"/>
                     </view>
+                    <connections>
+                        <outlet property="QuestionTextField" destination="dCX-GI-WBx" id="RGK-yX-iRe"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ox4-Rc-JTZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -523,8 +533,8 @@
         <image name="second" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="rX2-Ey-bOk"/>
+        <segue reference="5Vp-Q2-JTV"/>
         <segue reference="eKk-u9-Roz"/>
-        <segue reference="rCD-Er-C7o"/>
+        <segue reference="h5O-6m-IKD"/>
     </inferredMetricsTieBreakers>
 </document>
