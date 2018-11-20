@@ -12,13 +12,10 @@ import FirebaseAuth
 
 class ComposeSurveyViewController: UIViewController {
     
-    var key =  String()
-    
+    var key: String?
     var userID = Auth.auth().currentUser?.uid
     
     var ref: DatabaseReference!
-    private var databaseHandle: DatabaseHandle!
-
     
     
     @IBOutlet weak var surveyName: UITextField!
@@ -40,7 +37,7 @@ class ComposeSurveyViewController: UIViewController {
     
     func loadFromFireBase(){
 
-        ref.child("Surveys//\(userID!)/\(key)").observe(.value, with: { (snapshot) in
+        ref.child("Authors//\(userID!)/\(key!)").observe(.value, with: { (snapshot) in
             let value = snapshot.value as? NSDictionary
             let surveyTitle = value?["title"] as? String ?? ""
             self.setLabel = surveyTitle
@@ -50,6 +47,11 @@ class ComposeSurveyViewController: UIViewController {
         }
     }
 
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        var composeLongAnswerViewController = segue.destination as! ComposeLongAnswerViewController
+        composeLongAnswerViewController.key = key!
+        //composeSurveyViewController.userID = user
+    }
     
     
     @IBAction func createSurvey(_sender: Any) {

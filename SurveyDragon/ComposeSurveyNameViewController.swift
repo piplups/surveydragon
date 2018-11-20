@@ -30,25 +30,17 @@ class ComposeSurveyNameViewController: UIViewController {
     
     @IBAction func addSurvey(_ sender: Any) {
         let surveyName = surveyNameTextView.text
-        key = ref?.child("Surveys/\(user!.uid)").childByAutoId().key
+        key = ref?.child("Authors/\(user!.uid)").childByAutoId().key
         
         //creating artist with the given values
         let survey = ["id":key,
                       "title": surveyName]
         
         //adding the artist inside the generated unique key
-        ref?.child("Surveys/\(user!.uid)").child(key!).setValue(survey)
+        ref?.child("Authors/\(user!.uid)").child(key!).setValue(survey)
         
-        ref?.child("Surveys/\(user!.uid)").childByAutoId().setValue(
-            ["title": surveyName,
-             "key":key!]) {
-            (error:Error?, ref:DatabaseReference) in
-            if let error = error {
-                print("Data could not be saved: \(error). :(")
-            } else {
-                print("Data saved successfully!")
-            }
-        }
+      //  ref?.child("Surveys/\(key!)").setValue(survey)
+
         
         print("just added survey: ", surveyName!)
         

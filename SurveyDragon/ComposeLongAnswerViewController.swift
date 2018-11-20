@@ -13,24 +13,38 @@ import FirebaseAuth
 class ComposeLongAnswerViewController: UIViewController {
 
     var ref: DatabaseReference?
+    var key: String?
+    var userID = Auth.auth().currentUser?.uid
     
     @IBOutlet weak var QuestionTextField: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        ref = Database.database().reference()
         
         // Do any additional setup after loading the view.
     }
     
     @IBAction func addLongQuestion(_ sender: Any) {
-        let user = Auth.auth().currentUser
+        print("Was here \(key!)")
         // Post the data to Firebase
-        ref?.child("Questions").childByAutoId().setValue([
+        
+        //get the key
+        let questionText = QuestionTextField.text
+
+        
+
+
+        let questionDetails = [
             "type": "longAnswer",
-            "user": user!.uid,
-            "question": QuestionTextField.text
-            ])
+            "question": questionText
+            ]
+        
+        // add the keys under Questions
+        ref?.child("Surveys/\(key!)").setValue(questionDetails)
+        
+
+        
         // Dismiss the popover
         // using presentingViewController
         presentingViewController?.dismiss(animated: true, completion: nil)
