@@ -11,6 +11,7 @@
 		264F47E8219E418100AEA8DE /* ComposeSurveyNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264F47E7219E418100AEA8DE /* ComposeSurveyNameViewController.swift */; };
 		264F47EA219FB1D100AEA8DE /* CreateSurveyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264F47E9219FB1D100AEA8DE /* CreateSurveyViewController.swift */; };
 		264F47EC219FB75600AEA8DE /* ComposeLongAnswerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264F47EB219FB75600AEA8DE /* ComposeLongAnswerViewController.swift */; };
+		264F47EE21A6103600AEA8DE /* ComposeMultipleChoiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264F47ED21A6103600AEA8DE /* ComposeMultipleChoiceViewController.swift */; };
 		264F9732219173F6002B6E80 /* ComposeSurveyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264F9731219173F6002B6E80 /* ComposeSurveyViewController.swift */; };
 		26850134217D575F00708E4B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26850133217D575F00708E4B /* AppDelegate.swift */; };
 		26850136217D575F00708E4B /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26850135217D575F00708E4B /* FirstViewController.swift */; };
@@ -51,6 +52,7 @@
 		264F47E7219E418100AEA8DE /* ComposeSurveyNameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeSurveyNameViewController.swift; sourceTree = "<group>"; };
 		264F47E9219FB1D100AEA8DE /* CreateSurveyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateSurveyViewController.swift; sourceTree = "<group>"; };
 		264F47EB219FB75600AEA8DE /* ComposeLongAnswerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeLongAnswerViewController.swift; sourceTree = "<group>"; };
+		264F47ED21A6103600AEA8DE /* ComposeMultipleChoiceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeMultipleChoiceViewController.swift; sourceTree = "<group>"; };
 		264F9731219173F6002B6E80 /* ComposeSurveyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeSurveyViewController.swift; sourceTree = "<group>"; };
 		26850130217D575F00708E4B /* SurveyDragon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SurveyDragon.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		26850133217D575F00708E4B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -144,6 +146,7 @@
 				26850165217D863300708E4B /* GoogleService-Info.plist */,
 				264F47E9219FB1D100AEA8DE /* CreateSurveyViewController.swift */,
 				264F47EB219FB75600AEA8DE /* ComposeLongAnswerViewController.swift */,
+				264F47ED21A6103600AEA8DE /* ComposeMultipleChoiceViewController.swift */,
 			);
 			path = SurveyDragon;
 			sourceTree = "<group>";
@@ -422,6 +425,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				264F47EE21A6103600AEA8DE /* ComposeMultipleChoiceViewController.swift in Sources */,
 				264F47EA219FB1D100AEA8DE /* CreateSurveyViewController.swift in Sources */,
 				26850138217D575F00708E4B /* ProfileViewController.swift in Sources */,
 				264F47EC219FB75600AEA8DE /* ComposeLongAnswerViewController.swift in Sources */,
