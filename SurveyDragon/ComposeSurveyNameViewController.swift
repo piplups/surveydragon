@@ -34,12 +34,13 @@ class ComposeSurveyNameViewController: UIViewController {
         
         //creating artist with the given values
         let survey = ["id":key,
-                      "title": surveyName]
+                      "title": surveyName,
+                      "numOfQuestions": "0"]
         
         //adding the artist inside the generated unique key
-        ref?.child("Authors/\(user!.uid)").child(key!).setValue(survey)
+        ref?.child("Authors/\(user!.uid)").child(key!).setValue(["id":key, "title": surveyName])
         
-      //  ref?.child("Surveys/\(key!)").setValue(survey)
+        ref?.child("Surveys/\(key!)").setValue(survey)
 
         
         print("just added survey: ", surveyName!)

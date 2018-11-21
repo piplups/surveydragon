@@ -14,6 +14,7 @@ class ComposeSurveyViewController: UIViewController {
     
     var key: String?
     var userID = Auth.auth().currentUser?.uid
+    var numberOfQuestion:String = ""
     
     var ref: DatabaseReference!
     
@@ -37,9 +38,10 @@ class ComposeSurveyViewController: UIViewController {
     
     func loadFromFireBase(){
 
-        ref.child("Authors//\(userID!)/\(key!)").observe(.value, with: { (snapshot) in
+        ref.child("Surveys/\(key!)").observe(.value, with: { (snapshot) in
             let value = snapshot.value as? NSDictionary
             let surveyTitle = value?["title"] as? String ?? ""
+            self.numberOfQuestion = value?["numOfQuestions"] as? String ?? ""
             self.setLabel = surveyTitle
             
         }) { (error) in
@@ -50,6 +52,8 @@ class ComposeSurveyViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         var composeLongAnswerViewController = segue.destination as! ComposeLongAnswerViewController
         composeLongAnswerViewController.key = key!
+        composeLongAnswerViewController.numOfQuestions = self.numberOfQuestion
+        print("num: \(numberOfQuestion)")
         //composeSurveyViewController.userID = user
     }
     

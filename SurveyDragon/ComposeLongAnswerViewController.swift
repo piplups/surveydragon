@@ -15,6 +15,7 @@ class ComposeLongAnswerViewController: UIViewController {
     var ref: DatabaseReference?
     var key: String?
     var userID = Auth.auth().currentUser?.uid
+    var numOfQuestions:String=""
     
     @IBOutlet weak var QuestionTextField: UITextField!
     
@@ -32,16 +33,26 @@ class ComposeLongAnswerViewController: UIViewController {
         //get the key
         let questionText = QuestionTextField.text
 
-        
+        var questionNum:Int
 
 
         let questionDetails = [
             "type": "longAnswer",
             "question": questionText
             ]
+        var num = Int(numOfQuestions)
+        num = num! + 1
+        numOfQuestions = String(num!)
         
+        print(numOfQuestions)
+        
+        
+        
+        
+
         // add the keys under Questions
-        ref?.child("Surveys/\(key!)").setValue(questionDetails)
+        ref?.child("Surveys/\(key!)").updateChildValues(["numOfQuestions":numOfQuestions])
+        ref?.child("Surveys/\(key!)/\(numOfQuestions)").setValue(questionDetails)
         
 
         
