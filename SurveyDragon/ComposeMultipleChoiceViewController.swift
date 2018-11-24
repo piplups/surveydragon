@@ -15,6 +15,7 @@ class ComposeMultipleChoiceViewController: UIViewController {
     var ref: DatabaseReference?
     var key: String?
     var userID = Auth.auth().currentUser?.uid
+    var numOfQuestions:String=""
     
     @IBOutlet weak var QuestionTextField: UITextField!
     @IBOutlet weak var Answer1TextField: UITextField!
@@ -30,11 +31,40 @@ class ComposeMultipleChoiceViewController: UIViewController {
     }
     
     @IBAction func addQuestion(_ sender: Any) {
+        print("WAS HERE");
+
         // TODO: add question and answer choices to DB
+        let questionText = QuestionTextField.text
+        let answer1Text = Answer1TextField.text
+        let answer2Text = Answer2TextField.text
+        let answer3Text = Answer3TextField.text
+        let answer4Text = Answer4TextField.text
+
+        
+        //var questionNum:Int
+        let questionDetails = [
+            "type": "multipleChoice",
+            "question": questionText,
+            "answer1": answer1Text,
+            "answer2": answer2Text,
+            "answer3": answer3Text,
+            "answer4": answer4Text
+        ]
+        var num = Int(numOfQuestions)
+        num = num! + 1
+        numOfQuestions = String(num!)
+        
+        
+        
+        // add the keys under Questions
+        ref?.child("Surveys/\(key!)").updateChildValues(["numOfQuestions":numOfQuestions])
+        ref?.child("Surveys/\(key!)/\(numOfQuestions)").setValue(questionDetails)
     }
     
 
     @IBAction func cancelQuestion(_ sender: Any) {
+        
+        
         // Dismiss the popover
         presentingViewController?.dismiss(animated: true, completion: nil)
     }

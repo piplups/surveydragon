@@ -57,7 +57,10 @@ class ComposeSurveyViewController: UIViewController {
             print("num: \(numberOfQuestion)")
         }
         if segue.identifier == "newMultiChoice" {
-            // TODO: prepare data for segue for multi choice
+            let composeMultipleChoiceViewController = segue.destination as! ComposeMultipleChoiceViewController
+            composeMultipleChoiceViewController.key = key!
+            composeMultipleChoiceViewController.numOfQuestions = self.numberOfQuestion
+            print("num: \(numberOfQuestion)")
         }
         //composeSurveyViewController.userID = user
     }

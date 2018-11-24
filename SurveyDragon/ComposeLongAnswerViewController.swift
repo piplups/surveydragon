@@ -27,8 +27,6 @@ class ComposeLongAnswerViewController: UIViewController {
     }
     
     @IBAction func addLongQuestion(_ sender: Any) {
-        print("Was here \(key!)")
-        // Post the data to Firebase
         
         //get the key
         let questionText = QuestionTextField.text
@@ -43,10 +41,6 @@ class ComposeLongAnswerViewController: UIViewController {
         var num = Int(numOfQuestions)
         num = num! + 1
         numOfQuestions = String(num!)
-        
-        print(numOfQuestions)
-        
-        
         
         
 
