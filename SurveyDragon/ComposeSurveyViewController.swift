@@ -50,10 +50,15 @@ class ComposeSurveyViewController: UIViewController {
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        var composeLongAnswerViewController = segue.destination as! ComposeLongAnswerViewController
-        composeLongAnswerViewController.key = key!
-        composeLongAnswerViewController.numOfQuestions = self.numberOfQuestion
-        print("num: \(numberOfQuestion)")
+        if segue.identifier == "newLongAnswer" {
+            let composeLongAnswerViewController = segue.destination as! ComposeLongAnswerViewController
+            composeLongAnswerViewController.key = key!
+            composeLongAnswerViewController.numOfQuestions = self.numberOfQuestion
+            print("num: \(numberOfQuestion)")
+        }
+        if segue.identifier == "newMultiChoice" {
+            // TODO: prepare data for segue for multi choice
+        }
         //composeSurveyViewController.userID = user
     }
     
@@ -67,11 +72,12 @@ class ComposeSurveyViewController: UIViewController {
 
         presentingViewController?.dismiss(animated: true, completion: nil)
     }
-    
+    /*
     @IBAction func appendQuestion(_sender: Any) {
         
     }
-
+    */
+    
     /*
     // MARK: - Navigation
 

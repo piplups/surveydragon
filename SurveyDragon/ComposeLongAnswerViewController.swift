@@ -33,7 +33,7 @@ class ComposeLongAnswerViewController: UIViewController {
         //get the key
         let questionText = QuestionTextField.text
 
-        var questionNum:Int
+        //var questionNum:Int
 
 
         let questionDetails = [

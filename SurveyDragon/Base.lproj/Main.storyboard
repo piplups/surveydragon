@@ -268,7 +268,7 @@
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
-                                    <segue destination="7cF-Po-0u9" kind="show" id="c5M-hx-sc9"/>
+                                    <segue destination="7cF-Po-0u9" kind="show" identifier="newLongAnswer" id="c5M-hx-sc9"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rg7-XW-oIR">
@@ -280,7 +280,7 @@
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
-                                    <segue destination="JNy-Tm-TZq" kind="show" id="hTx-RR-mHq"/>
+                                    <segue destination="JNy-Tm-TZq" kind="show" identifier="newMultiChoice" id="hTx-RR-mHq"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Add a question" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q5n-BI-GzW">
@@ -302,6 +302,7 @@
                                         </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" title="Publish" id="RYT-JN-lmr">
                                             <connections>
+                                                <action selector="createSurveyWith_sender:" destination="VMl-qm-FZd" id="cW8-Rj-fFz"/>
                                                 <segue destination="POg-vR-Lkl" kind="show" id="rCD-Er-C7o"/>
                                             </connections>
                                         </barButtonItem>
@@ -342,7 +343,7 @@
         <!--Compose Multiple Choice View Controller-->
         <scene sceneID="rUx-vs-iHy">
             <objects>
-                <viewController id="JNy-Tm-TZq" customClass="ComposeMultipleChoiceViewController" sceneMemberID="viewController">
+                <viewController id="JNy-Tm-TZq" customClass="ComposeMultipleChoiceViewController" customModule="SurveyDragon" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="0DU-Lj-etk">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -661,6 +662,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="eKk-u9-Roz"/>
-        <segue reference="h5O-6m-IKD"/>
+        <segue reference="rCD-Er-C7o"/>
     </inferredMetricsTieBreakers>
 </document>
