@@ -49,6 +49,7 @@ class ComposeSurveyViewController: UIViewController, UITableViewDelegate, UITabl
         return cell
     }
     
+    
     func loadQuestions() {
         
         // TODO: pull questions from the current user's current survey from database
@@ -61,7 +62,14 @@ class ComposeSurveyViewController: UIViewController, UITableViewDelegate, UITabl
                 let user_snap = user_child as! DataSnapshot
                 let dict = user_snap.value as! [String: String?]
                 
-                let question = dict["question"] as? String
+                var question = dict["question"] as? String
+                let type = dict["type"] as? String
+                if type == "longAnswer"{
+                    question = question! + " (Long Answer)"
+                }
+                if type == "multipleChoice"{
+                    question = question! + " (Multiple Choice)"
+                }
                 self.questions.append(question!)
                 self.questionTableView.reloadData()
             }
@@ -97,62 +105,6 @@ class ComposeSurveyViewController: UIViewController, UITableViewDelegate, UITabl
         }) { (error) in
             print(error.localizedDescription)
         }
-        
-        
-        
-        
-        
-        
-        
-//        ref.child("Surveys/\(key!)").observe(.value, with: { (snapshot) in
-//            let value = snapshot.value as? NSDictionary
-//            let surveyTitle = value?["title"] as? String ?? ""
-//            //self.numberOfQuestion = value?["numOfQuestions"] as? String ?? ""
-//
-//            let temp = value?["1"] as? String ?? ""
-//            print(temp)
-
-//            for child in snapshot.children {
-//                let childSnapshot = snapshot.childSnapshot(forPath: "1")
-//                if let dbLocation = childSnapshot.value?["question"] as? [String:AnyObject] {
-//                    print(dbLocation)
-//                }
-//            }
-           // print(snapshot)
-//
-//            if ( snapshot.value is NSNull ) {
-//
-//                // DATA WAS NOT FOUND
-//                print("– – – Data was not found – – –")
-//
-//            } else {
-//            for user_child in (snapshot.children) {
-//
-//                let user_snap = user_child as! DataSnapshot
-//              //  print (user_snap.value)
-//                let dict = user_snap.value as! [String: String?]
-//
-//                // DEFINE VARIABLES FOR LABELS
-//                let recipeName = dict["question"] as? String
-//                //let recipeDescription = dict["Description"] as? String
-//                print("– – – Data for the recipe \(recipeName) with the description was found successfully! – – –")
-//            }
-//            }
-//
-//            var num = Int(self.numberOfQuestion)
-//            if num != nil{
-//                if num! >= 1 {
-//                    for i in 1...num!{
-//                        let temp = value?["question"] as? String ?? ""
-//                        print("question: \(temp)")
-//                    }
-//                }
-//            }
-
-
-//        }) { (error) in
-//            print(error.localizedDescription)
-//        }
         
     }
 
