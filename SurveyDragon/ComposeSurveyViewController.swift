@@ -58,15 +58,11 @@ class ComposeSurveyViewController: UIViewController, UITableViewDelegate, UITabl
             self.questions.removeAll()
             
             for user_child in (snapshot.children) {
-                
                 let user_snap = user_child as! DataSnapshot
-                //  print (user_snap.value)
                 let dict = user_snap.value as! [String: String?]
                 
-                // DEFINE VARIABLES FOR LABELS
-                let recipeName = dict["question"] as? String
-                //let recipeDescription = dict["Description"] as? String
-                self.questions.append(recipeName!)
+                let question = dict["question"] as? String
+                self.questions.append(question!)
                 self.questionTableView.reloadData()
             }
             
