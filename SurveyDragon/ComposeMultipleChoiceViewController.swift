@@ -59,6 +59,8 @@ class ComposeMultipleChoiceViewController: UIViewController {
         // add the keys under Questions
         ref?.child("Surveys/\(key!)").updateChildValues(["numOfQuestions":numOfQuestions])
         ref?.child("Surveys/\(key!)/\(numOfQuestions)").setValue(questionDetails)
+        
+        presentingViewController?.dismiss(animated: true, completion: nil)
     }
     
 
