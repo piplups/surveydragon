@@ -21,7 +21,7 @@ class ComposeSurveyViewController: UIViewController, UITableViewDelegate, UITabl
     var ref: DatabaseReference!
     
     // var questions = [String]() // this is for the table view. Used to store the list of questions.
-    let questions = ["How is your semester going?", "Are you stressed?", "Excited for winter break?",
+    var questions = ["How is your semester going?", "Are you stressed?", "Excited for winter break?",
                      "Computer Science?", "milk or cereal first?", "what time you wake up?",
                      "do you like mac n cheese", "this project needs to work"]
     
@@ -52,9 +52,28 @@ class ComposeSurveyViewController: UIViewController, UITableViewDelegate, UITabl
     func loadQuestions() {
         
         // TODO: pull questions from the current user's current survey from database
-        ref = Database.database().reference()
+
+        ref.child("Surveys/\(key!)/Questions").observe(.value, with: { (snapshot) in
+            let value = snapshot.value as? NSDictionary
+            self.questions.removeAll()
+            
+            for user_child in (snapshot.children) {
+                
+                let user_snap = user_child as! DataSnapshot
+                //  print (user_snap.value)
+                let dict = user_snap.value as! [String: String?]
+                
+                // DEFINE VARIABLES FOR LABELS
+                let recipeName = dict["question"] as? String
+                //let recipeDescription = dict["Description"] as? String
+                self.questions.append(recipeName!)
+                self.questionTableView.reloadData()
+            }
+            
+        }) { (error) in
+            print(error.localizedDescription)
+        }
         //ref.child("Surveys").queryOrderedByKey() // don't know how exactly this will
-        self.questionTableView.reloadData()
     }
     
     override func viewDidLoad() {
@@ -64,7 +83,7 @@ class ComposeSurveyViewController: UIViewController, UITableViewDelegate, UITabl
         // Do any additional setup after loading the view.
         // taken out for testing
         
-        // self.loadFromFireBase()
+         self.loadFromFireBase()
         questionTableView.dataSource = self
         questionTableView.delegate = self
         
@@ -82,6 +101,63 @@ class ComposeSurveyViewController: UIViewController, UITableViewDelegate, UITabl
         }) { (error) in
             print(error.localizedDescription)
         }
+        
+        
+        
+        
+        
+        
+        
+//        ref.child("Surveys/\(key!)").observe(.value, with: { (snapshot) in
+//            let value = snapshot.value as? NSDictionary
+//            let surveyTitle = value?["title"] as? String ?? ""
+//            //self.numberOfQuestion = value?["numOfQuestions"] as? String ?? ""
+//
+//            let temp = value?["1"] as? String ?? ""
+//            print(temp)
+
+//            for child in snapshot.children {
+//                let childSnapshot = snapshot.childSnapshot(forPath: "1")
+//                if let dbLocation = childSnapshot.value?["question"] as? [String:AnyObject] {
+//                    print(dbLocation)
+//                }
+//            }
+           // print(snapshot)
+//
+//            if ( snapshot.value is NSNull ) {
+//
+//                // DATA WAS NOT FOUND
+//                print("– – – Data was not found – – –")
+//
+//            } else {
+//            for user_child in (snapshot.children) {
+//
+//                let user_snap = user_child as! DataSnapshot
+//              //  print (user_snap.value)
+//                let dict = user_snap.value as! [String: String?]
+//
+//                // DEFINE VARIABLES FOR LABELS
+//                let recipeName = dict["question"] as? String
+//                //let recipeDescription = dict["Description"] as? String
+//                print("– – – Data for the recipe \(recipeName) with the description was found successfully! – – –")
+//            }
+//            }
+//
+//            var num = Int(self.numberOfQuestion)
+//            if num != nil{
+//                if num! >= 1 {
+//                    for i in 1...num!{
+//                        let temp = value?["question"] as? String ?? ""
+//                        print("question: \(temp)")
+//                    }
+//                }
+//            }
+
+
+//        }) { (error) in
+//            print(error.localizedDescription)
+//        }
+        
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
