@@ -236,6 +236,10 @@
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="DIC-W6-SEJ" id="bew-Se-OZ5"/>
+                                    <outlet property="delegate" destination="DIC-W6-SEJ" id="w55-Dx-bzJ"/>
+                                </connections>
                             </tableView>
                             <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yt1-kY-jWo">
                                 <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -256,7 +260,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="My Surveys" id="ppY-x4-e8C"/>
                     <connections>
-                        <outlet property="mySurveysTableView" destination="F4q-cM-iXR" id="ffF-o9-gaz"/>
+                        <outlet property="mySurveyTableView" destination="F4q-cM-iXR" id="Ez2-Hc-ZHx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LRf-9S-qG4" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -805,7 +809,7 @@
         <image name="second" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="SsY-Tp-k5H"/>
-        <segue reference="XUR-MY-Arj"/>
+        <segue reference="eKk-u9-Roz"/>
+        <segue reference="h5O-6m-IKD"/>
     </inferredMetricsTieBreakers>
 </document>
