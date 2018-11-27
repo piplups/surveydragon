@@ -10,6 +10,7 @@ target 'SurveyDragon' do
   pod 'Firebase/Core'
   pod 'Firebase/Database'
   pod 'Firebase/Auth'
+  pod 'ResearchKit'
 
   target 'SurveyDragonTests' do
     inherit! :search_paths

@@ -1,33 +1,27 @@
 //
-//  CreateSurveyViewController.swift
+//  MySurveyResultsViewController.swift
 //  SurveyDragon
 //
-//  Created by Philip Nguyen on 11/16/18.
+//  Created by Philip Nguyen on 11/26/18.
 //  Copyright © 2018 Philip Nguyen. All rights reserved.
 //
 
 import UIKit
-import FirebaseAuth
-import FirebaseDatabase
 
-class CreateSurveyViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class MySurveyResultsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
-    // Properties
-    var key: String?
-    var userID = Auth.auth().currentUser?.uid
-    var numberOfSurveys: Int = 0
-    
-    var ref: DatabaseReference!
-    
-    // survey array to add to the table view
     var surveys = [String]()
     
-    @IBOutlet weak var mySurveysTableView: UITableView!
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        // TODO: make function to pull from database
+        
+        // Do any additional setup after loading the view.
+    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return surveys.count
-        // count of surveys created by this user
-        // ref child ("Surveys) by user uid . count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -35,19 +29,8 @@ class CreateSurveyViewController: UIViewController, UITableViewDelegate, UITable
         
         // TODO:
         cell.textLabel?.text = surveys[indexPath.row]
-        
-        return cell
     }
     
-    @IBOutlet weak var createSurveyButton: UIBarButtonItem!
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-    }
-    
-
     /*
     // MARK: - Navigation
 

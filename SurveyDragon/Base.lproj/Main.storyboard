@@ -158,7 +158,7 @@
                                 <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <items>
-                                    <navigationItem title="Title" id="CwA-F9-uVB">
+                                    <navigationItem title="Create Survey" id="CwA-F9-uVB">
                                         <barButtonItem key="rightBarButtonItem" systemItem="compose" id="qP8-61-NIO">
                                             <connections>
                                                 <segue destination="tvc-s1-ZOG" kind="show" id="SsY-Tp-k5H"/>
@@ -170,6 +170,16 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="6Gt-iu-BKT">
                                 <rect key="frame" x="0.0" y="89" width="414" height="724"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="myCreatedSurveyCell" id="uwD-Qn-mDW">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="uwD-Qn-mDW" id="S8Q-Px-sJ3">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -181,15 +191,54 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="VaL-7Y-v7u"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Create Survey" id="kGp-ss-Rbz"/>
+                    <tabBarItem key="tabBarItem" title="Create Survey" image="first" id="kGp-ss-Rbz"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="createSurveyButton" destination="qP8-61-NIO" id="lIY-Ar-HRY"/>
+                        <outlet property="mySurveysTableView" destination="6Gt-iu-BKT" id="fBR-S8-M08"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KUT-Jo-IaT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="747.82608695652175" y="1068.75"/>
+        </scene>
+        <!--Item-->
+        <scene sceneID="tI0-G2-LFZ">
+            <objects>
+                <viewController id="DIC-W6-SEJ" customClass="MySurveyResultsViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="QXg-Yn-97P">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="F4q-cM-iXR">
+                                <rect key="frame" x="0.0" y="44" width="414" height="769"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="mySurveyCell" id="hwq-Hn-mdJ">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="hwq-Hn-mdJ" id="XID-LF-9AL">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="dE6-Rw-cYg" firstAttribute="trailing" secondItem="F4q-cM-iXR" secondAttribute="trailing" id="1Yi-vw-Dac"/>
+                            <constraint firstItem="dE6-Rw-cYg" firstAttribute="bottom" secondItem="F4q-cM-iXR" secondAttribute="bottom" id="7Zt-BD-t1f"/>
+                            <constraint firstItem="F4q-cM-iXR" firstAttribute="top" secondItem="dE6-Rw-cYg" secondAttribute="top" id="Bm7-cG-1uE"/>
+                            <constraint firstItem="F4q-cM-iXR" firstAttribute="leading" secondItem="dE6-Rw-cYg" secondAttribute="leading" id="Ehn-Ei-o6c"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="dE6-Rw-cYg"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Item" id="SPV-eo-6m0"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LRf-9S-qG4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="746" y="1767"/>
         </scene>
         <!--Compose Survey Name View Controller-->
         <scene sceneID="thh-bn-Ars">
@@ -641,11 +690,12 @@
                         <segue destination="4lN-O7-pKc" kind="relationship" relationship="viewControllers" id="u7Y-xg-7CH"/>
                         <segue destination="8rJ-Kc-sve" kind="relationship" relationship="viewControllers" id="lzU-1b-eKA"/>
                         <segue destination="POg-vR-Lkl" kind="relationship" relationship="viewControllers" id="XUR-MY-Arj"/>
+                        <segue destination="DIC-W6-SEJ" kind="relationship" relationship="viewControllers" id="489-zW-K1I"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="0.0" y="0.0"/>
+            <point key="canvasLocation" x="-193" y="145"/>
         </scene>
         <!--Home-->
         <scene sceneID="J2Y-CJ-srW">
@@ -672,7 +722,7 @@
         <image name="second" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="eKk-u9-Roz"/>
-        <segue reference="rCD-Er-C7o"/>
+        <segue reference="SsY-Tp-k5H"/>
+        <segue reference="XUR-MY-Arj"/>
     </inferredMetricsTieBreakers>
 </document>
