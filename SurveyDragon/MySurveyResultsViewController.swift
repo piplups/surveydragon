@@ -17,6 +17,8 @@ class MySurveyResultsViewController: UIViewController, UITableViewDataSource, UI
                    "Computer Science?", "milk or cereal first?", "what time you wake up?",
                    "do you like mac n cheese", "this project needs to work"]
     
+    var surveyID = [String]()
+    
     var key: String?
     var userID = Auth.auth().currentUser?.uid
     
@@ -59,11 +61,16 @@ class MySurveyResultsViewController: UIViewController, UITableViewDataSource, UI
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // get index of the survey
-        // let indexPath = mySurveysTableView.indexPathForSelectedRow
+         let indexPath = mySurveysTableView.indexPathForSelectedRow
+        
+        let singleSurveyResultsViewController = segue.destination as! SingleSurveyResultsViewController
+        singleSurveyResultsViewController.surveyID = self.surveyID[indexPath!.row]
+        singleSurveyResultsViewController.surveyTitle = self.surveys[indexPath!.row]
+
         
         // TODO: pass data to the Results page!
-        let singleSurveyResultsViewController = segue.destination as! SingleSurveyResultsViewController
-        singleSurveyResultsViewController.data = "data"
+       // let singleSurveyResultsViewController = segue.destination as! SingleSurveyResultsViewController
+       // singleSurveyResultsViewController.data = "data"
 
     }
     
@@ -72,11 +79,15 @@ class MySurveyResultsViewController: UIViewController, UITableViewDataSource, UI
         ref.child("Authors/\(userID!)").observe(.value, with: { (snapshot) in
 
             self.surveys.removeAll()
+            self.surveyID.removeAll()
             for user_child in (snapshot.children) {
                 let user_snap = user_child as! DataSnapshot
                 let dict = user_snap.value as! [String: String?]
-                var question = dict["title"] as? String
-                self.surveys.append(question!)
+                var title = dict["title"] as? String
+                var surveyid = dict["id"] as? String
+
+                self.surveyID.append(surveyid!)
+                self.surveys.append(title!)
                 self.mySurveysTableView.reloadData()
             }
             
