@@ -19,6 +19,8 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     var allSurveys = [String]()
     
+    
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return allSurveys.count
         
@@ -31,6 +33,8 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
         return cell!
     }
     
+    
+
 
     @IBOutlet weak var tableView: UITableView!
     
@@ -70,6 +74,16 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
         }
     }
 
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // get index of the survey
+        // let indexPath = mySurveysTableView.indexPathForSelectedRow
+        
+        // TODO: pass data to the Results page!
+        _ = segue.destination as! ComposeViewController
+        
+    }
 
 }
+
+    
 

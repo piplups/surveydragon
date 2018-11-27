@@ -8,13 +8,13 @@
 
 import UIKit
 import FirebaseDatabase
+import ResearchKit
 
 class ComposeViewController: UIViewController {
+    
+    @IBOutlet weak var surveyName: UILabel!
 
-    @IBOutlet weak var textView: UITextView!
-    
     var ref: DatabaseReference?
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,16 +23,32 @@ class ComposeViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-    @IBAction func addPost(_ sender: Any) {
-        // Post the data to Firebase
-        ref?.child("Posts").childByAutoId().setValue(textView.text)
-        // Dismiss the popover
-        // using presentingViewController to get access to the View Controller that
-        // presented this view
-        presentingViewController?.dismiss(animated: true, completion: nil)
+    // Take a survey functionality
+    public var SurveyTask: ORKOrderedTask {
+        var steps = [ORKStep]()
+        
+        let questQuestionStepTitle = "What is your quest?"
+        let textChoices = [
+            ORKTextChoice(text: "Create a ResearchKit App", value: 0 as NSNumber),
+            ORKTextChoice(text: "Seek the Holy Grail", value: 1 as NSNumber),
+            ORKTextChoice(text: "Find a shrubbery", value: 2 as NSNumber)
+        ]
+        let questAnswerFormat: ORKTextChoiceAnswerFormat = ORKAnswerFormat.choiceAnswerFormat(with: .singleChoice, textChoices: textChoices)
+        let questQuestionStep = ORKQuestionStep(identifier: "TextChoiceQuestionStep", title: questQuestionStepTitle, answer: questAnswerFormat)
+        steps += [questQuestionStep]
+        
+        return ORKOrderedTask(identifier: "SurveyTask", steps: steps)
     }
     
-    @IBAction func cancelPost(_ sender: Any) {
+    @IBAction func consentTapped(sender : AnyObject) {
+        let taskViewController = ORKTaskViewController(task: SurveyTask, taskRun: nil)
+        taskViewController.delegate = self
+        present(taskViewController, animated: true, completion: nil)
+    }
+    
+    
+    
+    @IBAction func cancel(_ sender: Any) {
         // Dismiss the popover
         presentingViewController?.dismiss(animated: true, completion: nil)
     }
@@ -45,5 +61,12 @@ class ComposeViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+
+}
+extension ComposeViewController : ORKTaskViewControllerDelegate {
+    func taskViewController(_ taskViewController: ORKTaskViewController, didFinishWith reason: ORKTaskViewControllerFinishReason, error: Error?) {
+        //Handle results with taskViewController.result
+        taskViewController.dismiss(animated: true, completion: nil)
+    }
 
 }

@@ -21,13 +21,25 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="PostCell" id="UuW-m9-ePH">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="PostCell" id="UuW-m9-ePH" customClass="MySurveyCell" customModule="SurveyDragon" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="UuW-m9-ePH" id="LKt-it-qQJ">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zbQ-3H-kvc">
+                                                    <rect key="frame" x="20" y="0.0" width="170" height="33"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="4ba-RO-6dz" kind="showDetail" id="BOa-qY-Kbi"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -41,20 +53,14 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="PQr-Ze-W5v"/>
                     </view>
-                    <navigationItem key="navigationItem" id="O2s-2M-vNw">
-                        <barButtonItem key="rightBarButtonItem" systemItem="compose" id="mWX-A1-Fn7">
-                            <connections>
-                                <segue destination="4ba-RO-6dz" kind="presentation" id="dpB-3o-ifT"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="O2s-2M-vNw"/>
                     <connections>
                         <outlet property="tableView" destination="AeH-H1-Uoo" id="cK7-i9-gN5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1688.8" y="-320.68965517241384"/>
+            <point key="canvasLocation" x="1688.4057971014495" y="-320.75892857142856"/>
         </scene>
         <!--Compose View Controller-->
         <scene sceneID="jJ8-Pa-IgG">
@@ -67,46 +73,46 @@
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="N0P-c5-ZKW">
                                 <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                                 <items>
-                                    <navigationItem title="Compose" id="RKt-NS-bVS">
-                                        <barButtonItem key="leftBarButtonItem" systemItem="trash" id="ETS-yM-FMk">
+                                    <navigationItem title="Take a Survey" id="RKt-NS-bVS">
+                                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="ETS-yM-FMk">
                                             <connections>
-                                                <action selector="cancelPost:" destination="4ba-RO-6dz" id="4Bv-kG-lF3"/>
-                                            </connections>
-                                        </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="add" id="24L-Ra-tC5">
-                                            <connections>
-                                                <action selector="addPost:" destination="4ba-RO-6dz" id="49n-Xp-nD3"/>
+                                                <action selector="cancel:" destination="4ba-RO-6dz" id="ZTJ-gt-xE6"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="TC6-X8-xH9">
-                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Survey Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RR9-IJ-5qG">
+                                <rect key="frame" x="151" y="140" width="113" height="24"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ggU-2X-VTm">
+                                <rect key="frame" x="144" y="190" width="127" height="46"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Take this Survey"/>
+                                <connections>
+                                    <action selector="consentTappedWithSender:" destination="4ba-RO-6dz" eventType="touchUpInside" id="JmA-0e-TdI"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="N0P-c5-ZKW" firstAttribute="leading" secondItem="9LA-50-FGr" secondAttribute="leading" id="3uu-6X-gbH"/>
-                            <constraint firstItem="TC6-X8-xH9" firstAttribute="top" secondItem="N0P-c5-ZKW" secondAttribute="bottom" id="FGk-ux-rcp"/>
-                            <constraint firstAttribute="bottomMargin" secondItem="TC6-X8-xH9" secondAttribute="bottom" id="Ias-Cw-GyN"/>
                             <constraint firstItem="N0P-c5-ZKW" firstAttribute="trailing" secondItem="9LA-50-FGr" secondAttribute="trailing" id="L3t-0Q-fAc"/>
-                            <constraint firstItem="9LA-50-FGr" firstAttribute="trailing" secondItem="TC6-X8-xH9" secondAttribute="trailing" id="ZDW-c2-PM8"/>
-                            <constraint firstItem="TC6-X8-xH9" firstAttribute="leading" secondItem="9LA-50-FGr" secondAttribute="leading" id="tzJ-FO-dw8"/>
                             <constraint firstItem="N0P-c5-ZKW" firstAttribute="top" secondItem="9LA-50-FGr" secondAttribute="top" id="voX-vQ-3SH"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="9LA-50-FGr"/>
                     </view>
                     <connections>
-                        <outlet property="textView" destination="TC6-X8-xH9" id="fmg-h9-YVF"/>
+                        <outlet property="surveyName" destination="RR9-IJ-5qG" id="e55-nm-evx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fWD-6J-jXK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2498" y="-324"/>
+            <point key="canvasLocation" x="2497.1014492753625" y="-324.10714285714283"/>
         </scene>
         <!--Profile-->
         <scene sceneID="wg7-f3-ORb">
