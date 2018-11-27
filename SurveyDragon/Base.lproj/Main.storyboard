@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Isf-p4-lHw">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Isf-p4-lHw">
     <device id="retina6_1" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -279,7 +279,7 @@
                                 <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <items>
-                                    <navigationItem title="Title" id="bB7-zD-nPa">
+                                    <navigationItem title="Results" id="bB7-zD-nPa">
                                         <barButtonItem key="leftBarButtonItem" title="Back" id="fev-ne-MCp">
                                             <connections>
                                                 <action selector="backButton:" destination="fYl-Yn-3Jv" id="h3K-ud-xIc"/>
@@ -288,24 +288,43 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="TextView" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Zeg-a8-2ji">
-                                <rect key="frame" x="20" y="88" width="374" height="774"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Igy-QV-91E">
+                                <rect key="frame" x="0.0" y="135" width="414" height="727"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="44o-mD-6zE">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="44o-mD-6zE" id="dcf-Wr-DKi">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Survey Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dC8-xA-Voe">
+                                <rect key="frame" x="20" y="88" width="241" height="39"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="NQh-B0-tY4" firstAttribute="bottom" secondItem="Zeg-a8-2ji" secondAttribute="bottom" id="7jm-VI-W9h"/>
-                            <constraint firstItem="Zeg-a8-2ji" firstAttribute="top" secondItem="NQh-B0-tY4" secondAttribute="top" constant="44" id="8Ni-XE-01c"/>
-                            <constraint firstItem="Zeg-a8-2ji" firstAttribute="leading" secondItem="NQh-B0-tY4" secondAttribute="leading" constant="20" id="gqr-wr-272"/>
-                            <constraint firstItem="NQh-B0-tY4" firstAttribute="trailing" secondItem="Zeg-a8-2ji" secondAttribute="trailing" constant="20" id="t3R-Ha-qck"/>
+                            <constraint firstItem="Igy-QV-91E" firstAttribute="top" secondItem="NQh-B0-tY4" secondAttribute="top" constant="91" id="2NK-o3-E3M"/>
+                            <constraint firstItem="Igy-QV-91E" firstAttribute="trailing" secondItem="NQh-B0-tY4" secondAttribute="trailing" id="5Jz-tU-xAN"/>
+                            <constraint firstItem="NQh-B0-tY4" firstAttribute="bottom" secondItem="Igy-QV-91E" secondAttribute="bottom" id="Aeo-WL-ugJ"/>
+                            <constraint firstItem="Igy-QV-91E" firstAttribute="leading" secondItem="NQh-B0-tY4" secondAttribute="leading" id="Kad-1Q-TbG"/>
+                            <constraint firstItem="NQh-B0-tY4" firstAttribute="trailing" secondItem="dC8-xA-Voe" secondAttribute="trailing" constant="153" id="UaS-yC-WRO"/>
+                            <constraint firstItem="NQh-B0-tY4" firstAttribute="bottom" secondItem="dC8-xA-Voe" secondAttribute="bottom" constant="735" id="Xpd-5w-AWE"/>
+                            <constraint firstItem="dC8-xA-Voe" firstAttribute="top" secondItem="NQh-B0-tY4" secondAttribute="top" constant="44" id="bJX-az-EGb"/>
+                            <constraint firstItem="dC8-xA-Voe" firstAttribute="leading" secondItem="NQh-B0-tY4" secondAttribute="leading" constant="20" id="pMY-Cp-Ovf"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="NQh-B0-tY4"/>
                     </view>
                     <connections>
-                        <outlet property="surveyResults" destination="Zeg-a8-2ji" id="zrm-ID-BaD"/>
+                        <outlet property="Results" destination="Igy-QV-91E" id="A5y-uc-ica"/>
+                        <outlet property="surveyTitleLabel" destination="dC8-xA-Voe" id="Zpb-RD-zGF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cV2-7k-xi2" userLabel="First Responder" sceneMemberID="firstResponder"/>
