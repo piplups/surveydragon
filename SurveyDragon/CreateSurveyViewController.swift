@@ -10,6 +10,7 @@ import UIKit
 import FirebaseAuth
 import FirebaseDatabase
 
+// This view controller is used to EDIT surveys that have already been made
 class CreateSurveyViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     // Properties
@@ -43,10 +44,36 @@ class CreateSurveyViewController: UIViewController, UITableViewDelegate, UITable
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        ref = Database.database().reference()
+        
+        mySurveysTableView.dataSource = self
+        mySurveysTableView.delegate = self
 
+        self.loadFromFireBase()
+        
+        self.mySurveysTableView.reloadData()
         // Do any additional setup after loading the view.
     }
     
+    func loadFromFireBase(){
+        
+        ref.child("Authors/\(userID!)").observe(.value, with: { (snapshot) in
+            
+            self.surveys.removeAll()
+            for user_child in (snapshot.children) {
+                let user_snap = user_child as! DataSnapshot
+                let dict = user_snap.value as! [String: String?]
+                var question = dict["title"] as? String
+                self.surveys.append(question!)
+                self.mySurveysTableView.reloadData()
+            }
+            
+        }) { (error) in
+            print(error.localizedDescription)
+        }
+        
+    }
 
     /*
     // MARK: - Navigation

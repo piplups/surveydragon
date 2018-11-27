@@ -10,6 +10,7 @@ import UIKit
 import FirebaseDatabase
 import FirebaseAuth
 
+// This view controller is used to VIEW surveys and their question RESULTS
 class MySurveyResultsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     var surveys = ["How is your semester going?", "Are you stressed?", "Excited for winter break?",
@@ -22,22 +23,22 @@ class MySurveyResultsViewController: UIViewController, UITableViewDataSource, UI
     var ref: DatabaseReference!
     
     
-    @IBOutlet weak var mySurveyTableView: UITableView!
+    @IBOutlet weak var mySurveysTableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         ref = Database.database().reference()
 
-        mySurveyTableView.dataSource = self
-        mySurveyTableView.delegate = self
+        mySurveysTableView.dataSource = self
+        mySurveysTableView.delegate = self
         
         // TODO: make function to pull from database
         
         // Do any additional setup after loading the view.
         self.loadFromFireBase()
 
-        self.mySurveyTableView.reloadData()
+        self.mySurveysTableView.reloadData()
 
     }
     
@@ -75,7 +76,7 @@ class MySurveyResultsViewController: UIViewController, UITableViewDataSource, UI
                 let dict = user_snap.value as! [String: String?]
                 var question = dict["title"] as? String
                 self.surveys.append(question!)
-                self.mySurveyTableView.reloadData()
+                self.mySurveysTableView.reloadData()
             }
             
         }) { (error) in

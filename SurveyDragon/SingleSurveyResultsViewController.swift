@@ -25,6 +25,9 @@ class SingleSurveyResultsViewController: UIViewController {
     }
     
 
+    @IBAction func backButton(_ sender: Any) {
+        presentingViewController?.dismiss(animated: true, completion: nil)
+    }
     /*
     // MARK: - Navigation
 
