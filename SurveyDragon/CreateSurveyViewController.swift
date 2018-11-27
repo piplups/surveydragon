@@ -31,7 +31,7 @@ class CreateSurveyViewController: UIViewController, UITableViewDelegate, UITable
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "myCreatedSurveyCell", for: indexPath)
         
         // TODO:
         cell.textLabel?.text = surveys[indexPath.row]

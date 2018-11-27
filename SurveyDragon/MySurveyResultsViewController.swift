@@ -12,6 +12,8 @@ class MySurveyResultsViewController: UIViewController, UITableViewDataSource, UI
     
     var surveys = [String]()
     
+    @IBOutlet weak var mySurveysTableView: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -25,10 +27,21 @@ class MySurveyResultsViewController: UIViewController, UITableViewDataSource, UI
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "mySurveyCell", for: indexPath)
         
-        // TODO:
+        //
         cell.textLabel?.text = surveys[indexPath.row]
+        
+        return cell
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // get index of the survey
+        // let indexPath = mySurveysTableView.indexPathForSelectedRow
+        
+        // TODO: pass data to the Results page!
+        let singleSurveyResultsViewController = segue.destination as! SingleSurveyResultsViewController
+        singleSurveyResultsViewController.data = "data"
     }
     
     /*

@@ -14,16 +14,16 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
     var ref:DatabaseReference?
     var databaseHandle:DatabaseHandle?
     
-    var postData = [String]()
+    var allSurveys = [String]()
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return postData.count
+        return allSurveys.count
         
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "PostCell")
-        cell?.textLabel?.text = postData[indexPath.row]
+        cell?.textLabel?.text = allSurveys[indexPath.row]
         
         return cell!
     }
@@ -41,14 +41,14 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
         ref = Database.database().reference()
         
         // Retreive the posts and listen for changes
-        databaseHandle = ref?.child("Posts").observe(.childAdded, with: { (snapshot) in
+        databaseHandle = ref?.child("Surveys").observe(.childAdded, with: { (snapshot) in
             // code to execute when a child is added under "posts"
             // take the value from the snapshot and added it to the postData array
             let post = snapshot.value as? String
             
             if let actualPost = post {
                 // Append the data to our postData array
-                self.postData.append(actualPost)
+                self.allSurveys.append(actualPost)
                 // Reload the tableview
                 self.tableView.reloadData()
             }
