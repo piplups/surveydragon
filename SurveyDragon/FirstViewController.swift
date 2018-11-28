@@ -16,7 +16,8 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
     var ref: DatabaseReference!
     var userID = Auth.auth().currentUser?.uid
 
-    
+    var surveyID = [String]()
+
     var allSurveys = [String]()
     
     
@@ -62,9 +63,13 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
             for user_child in (snapshot.children) {
                 let user_snap = user_child as! DataSnapshot
                 let dict = user_snap.value as! [String: NSObject?]
-                
+                //let dict2 = user_snap.value as! [String: String?]
+
                 var title = dict["title"] as? String
+                //   var surveyid = dict2["id"] as? String
+
                 self.allSurveys.append(title!)
+                self.surveyID.append(user_snap.key)
                 self.tableView.reloadData()
             }
         
@@ -81,7 +86,12 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
         // TODO: pass data to the Results page!
         _ = segue.destination as! ComposeViewController
         
+        let indexPath = tableView.indexPathForSelectedRow
+        let composeViewController = segue.destination as! ComposeViewController
+        composeViewController.surveyID = self.surveyID[indexPath!.row]
+        composeViewController.surveyTitle = self.allSurveys[indexPath!.row]
     }
+    
 
 }
 

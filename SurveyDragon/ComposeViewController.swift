@@ -12,33 +12,106 @@ import ResearchKit
 
 class ComposeViewController: UIViewController {
     
+    struct Question {
+        var title: String
+        var answers: [String]
+        var type: String
+    }
+    
+    
     @IBOutlet weak var surveyName: UILabel!
+    var surveyID: String = ""
+    var surveyTitle: String = ""
+    var allQuestions = [Question]()
 
-    var ref: DatabaseReference?
+    var ref: DatabaseReference!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         ref = Database.database().reference()
+        self.loadFromFireBase()
+
         // Do any additional setup after loading the view.
     }
     
     // Take a survey functionality
     public var SurveyTask: ORKOrderedTask {
         var steps = [ORKStep]()
+
+        var count = 1
+        // for all questions in the survey
+        for question in allQuestions {
+            // if it's a long answer
+            if question.type == "longAnswer" {
+                let longAnswerFormat = ORKTextAnswerFormat(maximumLength: 30)
+                longAnswerFormat.multipleLines = false
+                let longQuestionStepTitle = question.title
+                let longQuestionStep = ORKQuestionStep(identifier: String(count), title: longQuestionStepTitle, answer: longAnswerFormat)
+                steps += [longQuestionStep]
+                
+            }
+            
+            // if it's a multiple choice question
+            if question.type == "multipleChoice" {
+                // Question title
+                let multiChoiceQuestionStepTitle = question.title
+                
+                // Answer Choices
+                var multiChoices = [ORKTextChoice]()
+                var index = 0
+                for choice in question.answers {
+                    multiChoices.append(ORKTextChoice(text: choice, value: index as NSNumber))
+                    index = index + 1
+                }
+                
+                // Creating Multiple Choice question Object
+                let multiChoiceAnswerFormat: ORKTextChoiceAnswerFormat = ORKAnswerFormat.choiceAnswerFormat(with: .singleChoice, textChoices: multiChoices)
+                let multiChoiceQuestionStep = ORKQuestionStep(identifier: String(count), title: multiChoiceQuestionStepTitle, answer: multiChoiceAnswerFormat)
+                steps += [multiChoiceQuestionStep]
+            }
+            count = count + 1
+        }
         
-        let questQuestionStepTitle = "What is your quest?"
-        let textChoices = [
-            ORKTextChoice(text: "Create a ResearchKit App", value: 0 as NSNumber),
-            ORKTextChoice(text: "Seek the Holy Grail", value: 1 as NSNumber),
-            ORKTextChoice(text: "Find a shrubbery", value: 2 as NSNumber)
-        ]
-        let questAnswerFormat: ORKTextChoiceAnswerFormat = ORKAnswerFormat.choiceAnswerFormat(with: .singleChoice, textChoices: textChoices)
-        let questQuestionStep = ORKQuestionStep(identifier: "TextChoiceQuestionStep", title: questQuestionStepTitle, answer: questAnswerFormat)
-        steps += [questQuestionStep]
         
         return ORKOrderedTask(identifier: "SurveyTask", steps: steps)
     }
+    
+    
+    
+    func loadFromFireBase(){
+        ref.child("Surveys/\(surveyID)/Questions").observe(.value, with: { (snapshot) in
+            
+            //self.responses.removeAll()
+            for user_child in (snapshot.children) {
+                
+                let user_snap = user_child as! DataSnapshot
+                let dict = user_snap.value as! [String: String?]
+                let question = dict["question"] as? String
+                let type1 = dict["type"] as? String
+                print ("type1 \(type1)")
+                
+                if type1 == "multipleChoice"{
+                    let answer1 = dict["answer1"] as? String
+                    let answer2 = dict["answer2"] as? String
+                    let answer3 = dict["answer3"] as? String
+                    let answer4 = dict["answer4"] as? String
+                    let newQuestion = Question(title:question!, answers:[answer1!,answer2!,answer3!,answer4!],type: type1!)
+                    self.allQuestions.append(newQuestion)
+                }
+                
+                if type1 == "longAnswer"{
+                    let newQuestion = Question(title:question!, answers:[],type: type1!)
+                    self.allQuestions.append(newQuestion)
+
+                }
+                
+
+            }
+        })
+        
+    }
+
     
     @IBAction func consentTapped(sender : AnyObject) {
         let taskViewController = ORKTaskViewController(task: SurveyTask, taskRun: nil)
