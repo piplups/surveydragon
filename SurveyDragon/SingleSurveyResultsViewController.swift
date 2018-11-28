@@ -73,6 +73,7 @@ class SingleSurveyResultsViewController: UIViewController, UITableViewDataSource
                 count = count + 1
                 self.responses.append(question!)
 
+                // report multiple choice answers
                 if type == "multipleChoice" {
                     var answer1 = dict["answer1"] as? String
                     var answer2 = dict["answer2"] as? String
@@ -94,7 +95,16 @@ class SingleSurveyResultsViewController: UIViewController, UITableViewDataSource
                     }
                 }
                 
+                // Report long answers
                 if type == "longAnswer" {
+                    let numResponses = dict["numResponse"] as? String
+                    let n = Int(numResponses!)
+                    for i in 1...n! {
+                        let responseField = "response\(i)"
+                        let response = dict[responseField] as? String
+                        self.responses.append("- " + response!)
+                    }
+                    
 
                 }
 

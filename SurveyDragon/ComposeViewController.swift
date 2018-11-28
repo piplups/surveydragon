@@ -38,6 +38,8 @@ class ComposeViewController: UIViewController {
         ref = Database.database().reference()
         self.loadFromFireBase()
         
+        surveyName.text = surveyTitle
+        
         // Do any additional setup after loading the view.
     }
     
