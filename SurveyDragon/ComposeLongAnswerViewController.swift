@@ -36,7 +36,8 @@ class ComposeLongAnswerViewController: UIViewController {
 
         let questionDetails = [
             "type": "longAnswer",
-            "question": questionText
+            "question": questionText,
+            "numResponse": "0"
             ]
         var num = Int(numOfQuestions)
         num = num! + 1
