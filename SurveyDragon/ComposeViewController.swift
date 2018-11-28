@@ -37,6 +37,8 @@ class ComposeViewController: UIViewController {
     
     // Take a survey functionality
     public var SurveyTask: ORKOrderedTask {
+        //SurveyTask.identifier = "survey-task"
+        
         var steps = [ORKStep]()
 
         var count = 1
@@ -115,11 +117,42 @@ class ComposeViewController: UIViewController {
     
     @IBAction func consentTapped(sender : AnyObject) {
         let taskViewController = ORKTaskViewController(task: SurveyTask, taskRun: nil)
+
         taskViewController.delegate = self
         present(taskViewController, animated: true, completion: nil)
     }
     
-    
+    func taskViewController(_ taskViewController: ORKTaskViewController, didFinishWith reason: ORKTaskViewControllerFinishReason, error: Error?) {
+        
+        //Handle results with taskViewController.result
+        var count = 1
+        for question in allQuestions {
+            if question.type == "multipleChoice" {
+                if let stepResult = taskViewController.result.stepResult(forStepIdentifier: String(count)),
+                    let stepResults = stepResult.results,
+                    let stepFirstResult = stepResults.first,
+                    let choiceResult = stepFirstResult as? ORKChoiceQuestionResult,
+                    let choiceAnswer = choiceResult.choiceAnswers {
+                   
+                    let index = choiceAnswer as? [String]
+                    print("Result for MC question: \(choiceAnswer[0])")
+                }
+            }
+            if question.type == "longAnswer" {
+                if let stepResult = taskViewController.result.stepResult(forStepIdentifier: String(count)),
+                    let stepResults = stepResult.results,
+                    let stepFirstResult = stepResults.first,
+                    let longResult = stepFirstResult as? ORKTextQuestionResult,
+                    let longAnswer = longResult.textAnswer {
+                    
+                    print("Result for long answer question: \(longAnswer)")
+                }
+            }
+            count = count + 1
+        }
+        
+        taskViewController.dismiss(animated: true, completion: nil)
+    }
     
     @IBAction func cancel(_ sender: Any) {
         // Dismiss the popover
@@ -137,9 +170,24 @@ class ComposeViewController: UIViewController {
 
 }
 extension ComposeViewController : ORKTaskViewControllerDelegate {
-    func taskViewController(_ taskViewController: ORKTaskViewController, didFinishWith reason: ORKTaskViewControllerFinishReason, error: Error?) {
-        //Handle results with taskViewController.result
-        taskViewController.dismiss(animated: true, completion: nil)
-    }
+//    func taskViewController(_ taskViewController: ORKTaskViewController, didFinishWith reason: ORKTaskViewControllerFinishReason, error: Error?) {
+//
+//        //Handle results with taskViewController.result
+//        let stepResult = taskViewController.result.stepResult(forStepIdentifier: "SurveyTask")
+//
+//        print(stepResult!)
+////        let task = ORKOrderedTask(identifier: "survey-task", steps: SurveyTask.steps)
+////        let stepResult = taskViewController.result.stepResult(forStepIdentifier: "survey-task")
+////        let stepResults = stepResult?.results
+////        //print(stepResults!)
+//
+////            let stepFirstResult = stepResults.first,
+////            let booleanResult = stepFirstResult as? ORKBooleanQuestionResult,
+////            let booleanAnswer = booleanResult.booleanAnswer {
+////            print("Result for question: \(booleanAnswer.boolValue)")
+////        }
+//
+//        taskViewController.dismiss(animated: true, completion: nil)
+//    }
 
 }
