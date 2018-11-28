@@ -15,6 +15,7 @@ class ComposeViewController: UIViewController {
     struct Question {
         var title: String
         var answers: [String]
+        var answersCount: [String]
         var type: String
         var response:String
     }
@@ -101,13 +102,17 @@ class ComposeViewController: UIViewController {
                     let answer2 = dict["answer2"] as? String
                     let answer3 = dict["answer3"] as? String
                     let answer4 = dict["answer4"] as? String
-                    let newQuestion = Question(title:question!, answers:[answer1!,answer2!,answer3!,answer4!],type: type1!,response: "")
+                    let count1 = dict["count1"] as? String
+                    let count2 = dict["count2"] as? String
+                    let count3 = dict["count3"] as? String
+                    let count4 = dict["count4"] as? String
+                    let newQuestion = Question(title:question!, answers:[answer1!,answer2!,answer3!,answer4!],answersCount:[count1!,count2!,count3!,count4!],type: type1!,response: "")
                     self.allQuestions.append(newQuestion)
                 }
                 
                 if type1 == "longAnswer"{
                     let response = dict["numResponse"] as? String
-                    let newQuestion = Question(title:question!, answers:[],type: type1!,response: response!)
+                    let newQuestion = Question(title:question!, answers:[],answersCount:[],type: type1!,response: response!)
                     self.allQuestions.append(newQuestion)
                     
                 }
@@ -140,8 +145,33 @@ class ComposeViewController: UIViewController {
                     let stepFirstResult = stepResults.first,
                     let choiceResult = stepFirstResult as? ORKChoiceQuestionResult,
                     let choiceAnswer = choiceResult.choiceAnswers {
-                    
                     let index = choiceAnswer as? [String]
+                    let temp = choiceAnswer[0] as! Int
+                    var num = ""
+                    var amount = ""
+                    if temp == 0{
+                        num = "1"
+                        amount = question.answersCount[0]
+                    }
+                    if temp == 1{
+                        num = "2"
+                        amount = question.answersCount[1]
+                    }
+                    if temp == 2{
+                        num = "3"
+                        amount = question.answersCount[2]
+                    }
+                    if temp == 3{
+                        num = "4"
+                        amount = question.answersCount[3]
+                    }
+                    var holder = Int(amount)
+                    holder = holder! + 1
+                    amount = String(holder!)
+                    
+                    
+                    ref.child("Surveys/\(surveyID)/Questions/\(String(count))").updateChildValues(["count" + num: amount])
+                    
                     print("Result for MC question: \(choiceAnswer[0])")
                 }
             }
@@ -152,7 +182,7 @@ class ComposeViewController: UIViewController {
                     let longResult = stepFirstResult as? ORKTextQuestionResult,
                     let longAnswer = longResult.textAnswer {
                     let response = question.response
-                    pushToFireBase(data: longAnswer, count: count,response: response)
+                    pushLongAnswerToFireBase(data: longAnswer, count: count,response: response)
                     print("Result for long answer question: \(longAnswer)")
                 }
             }
@@ -163,15 +193,13 @@ class ComposeViewController: UIViewController {
     }
     
     
-    func pushToFireBase(data:String, count:Int, response:String){
+    func pushLongAnswerToFireBase(data:String, count:Int, response:String){
         
         var num: Int
-        
         num = Int(response)!
         num = num + 1
         self.numOfResponses = String(num)
         ref.child("Surveys/\(surveyID)/Questions/\(String(count))").updateChildValues(["response" + numOfResponses:data, "numResponse":self.numOfResponses])
-        
     }
     
     @IBAction func cancel(_ sender: Any) {

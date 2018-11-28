@@ -78,14 +78,19 @@ class SingleSurveyResultsViewController: UIViewController, UITableViewDataSource
                     var answer2 = dict["answer2"] as? String
                     var answer3 = dict["answer3"] as? String
                     var answer4 = dict["answer4"] as? String
+                    
+                    var count1 = dict["count1"] as? String
+                    var count2 = dict["count2"] as? String
+                    var count3 = dict["count3"] as? String
+                    var count4 = dict["count4"] as? String
 
-                    self.responses.append("a. " + answer1!)
-                    self.responses.append("b. " + answer2!)
+                    self.responses.append("a. " + answer1! + " (count:\(count1!) )")
+                    self.responses.append("b. " + answer2! + " (count:\(count2!) )")
                     if answer3 != ""{
-                        self.responses.append("c. " + answer3!)
+                        self.responses.append("c. " + answer3! + " (count:\(count3!) )")
                     }
                     if answer4 != ""{
-                        self.responses.append("d. " + answer4!)
+                        self.responses.append("d. " + answer4! + " (count:\(count4!) )")
                     }
                 }
                 

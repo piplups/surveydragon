@@ -46,9 +46,13 @@ class ComposeMultipleChoiceViewController: UIViewController {
             "type": "multipleChoice",
             "question": questionText,
             "answer1": answer1Text,
+            "count1": "0",
             "answer2": answer2Text,
+            "count2": "0",
             "answer3": answer3Text,
-            "answer4": answer4Text
+            "count3": "0",
+            "answer4": answer4Text,
+            "count4": "0"
         ]
         var num = Int(numOfQuestions)
         num = num! + 1
