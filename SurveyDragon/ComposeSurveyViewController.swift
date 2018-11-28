@@ -126,20 +126,12 @@ class ComposeSurveyViewController: UIViewController, UITableViewDelegate, UITabl
     
     
     @IBAction func createSurvey(_sender: Any) {
-       // let authorRef = self.ref!.child(userID!);
-
-        //ref?.child("surveys").childByAutoId().setValue(["title": "surveyNameView",
-                                                        //"author": userID!])
-       // authorRef.setValue(["title": surveyName.text!])
-
         presentingViewController?.dismiss(animated: true, completion: nil)
     }
-    /*
-    @IBAction func appendQuestion(_sender: Any) {
-        
-    }
-    */
     
+    @IBAction func cancelSurveyCompose(_ sender: Any) {
+        presentingViewController?.dismiss(animated: true, completion: nil)
+    }
     /*
     // MARK: - Navigation
 

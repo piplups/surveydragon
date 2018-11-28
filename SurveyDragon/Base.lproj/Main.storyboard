@@ -352,7 +352,7 @@
                                     <navigationItem title="New Survey" id="mAW-ci-tr0">
                                         <barButtonItem key="leftBarButtonItem" title="Cancel" id="zty-MO-eKc">
                                             <connections>
-                                                <segue destination="POg-vR-Lkl" kind="show" id="h5O-6m-IKD"/>
+                                                <action selector="cancelSurvey:" destination="tvc-s1-ZOG" id="Wf4-G2-zZ6"/>
                                             </connections>
                                         </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" title="Continue" id="HvC-Pl-Zqc">
@@ -443,13 +443,12 @@
                                     <navigationItem title="New Survey" id="y5b-y8-znf">
                                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="x8C-NT-2VZ">
                                             <connections>
-                                                <segue destination="tvc-s1-ZOG" kind="show" id="eKk-u9-Roz"/>
+                                                <action selector="cancelSurveyCompose:" destination="VMl-qm-FZd" id="vfK-AW-RJA"/>
                                             </connections>
                                         </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" title="Publish" id="RYT-JN-lmr">
                                             <connections>
                                                 <action selector="createSurveyWith_sender:" destination="VMl-qm-FZd" id="cW8-Rj-fFz"/>
-                                                <segue destination="POg-vR-Lkl" kind="show" id="rCD-Er-C7o"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>
@@ -837,8 +836,4 @@
         <image name="first" width="30" height="30"/>
         <image name="second" width="30" height="30"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="SsY-Tp-k5H"/>
-        <segue reference="XUR-MY-Arj"/>
-    </inferredMetricsTieBreakers>
 </document>

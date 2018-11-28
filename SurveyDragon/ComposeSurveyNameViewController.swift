@@ -52,11 +52,17 @@ class ComposeSurveyNameViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let composeSurveyViewController = segue.destination as! ComposeSurveyViewController
-        composeSurveyViewController.key = key!
-        //composeSurveyViewController.userID = user
+        // if the segue is question creation
+        if (segue.identifier == "goToSurveyQuestionCreation") {
+            let composeSurveyViewController = segue.destination as! ComposeSurveyViewController
+            composeSurveyViewController.key = key!
+        }
+        
     }
 
+    @IBAction func cancelSurvey(_ sender: Any) {
+        presentingViewController?.dismiss(animated: true, completion: nil)
+    }
     /*
     // MARK: - Navigation
 
