@@ -27,32 +27,27 @@ class ComposeLongAnswerViewController: UIViewController {
     }
     
     @IBAction func addLongQuestion(_ sender: Any) {
-        print("Was here \(key!)")
-        // Post the data to Firebase
         
         //get the key
         let questionText = QuestionTextField.text
 
-        var questionNum:Int
+        //var questionNum:Int
 
 
         let questionDetails = [
             "type": "longAnswer",
-            "question": questionText
+            "question": questionText,
+            "numResponse": "0"
             ]
         var num = Int(numOfQuestions)
         num = num! + 1
         numOfQuestions = String(num!)
         
-        print(numOfQuestions)
-        
-        
-        
         
 
         // add the keys under Questions
         ref?.child("Surveys/\(key!)").updateChildValues(["numOfQuestions":numOfQuestions])
-        ref?.child("Surveys/\(key!)/\(numOfQuestions)").setValue(questionDetails)
+        ref?.child("Surveys/\(key!)/Questions/\(numOfQuestions)").setValue(questionDetails)
         
 
         
